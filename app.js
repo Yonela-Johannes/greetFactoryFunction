@@ -6,15 +6,16 @@ const greetMe = document.querySelector('.greet-me')
 const greet = document.querySelector('.greet')
 const error = document.querySelector('.error')
 let users = JSON.parse(localStorage.getItem("users"))
+
 const selectionError = document.querySelector('.selection-error')
 const nameLabel = document.querySelector('.name-label')
 const languageGreetSelect = document.getElementsByClassName('language')
 let count = JSON.parse(localStorage.getItem('count'))
 let language = JSON.parse(localStorage.getItem('language'))
-let names = greeting.getNames()
-let usernames = !names ? [] : names
 
-counter.innerHTML = count
+let usernames = !users ? [] : users
+
+counter.innerHTML = count ? count : 0
 greet.innerHTML = 'Your name and greeting in selected language will appear here.'
 
 greetMe.onclick = () => {
@@ -24,12 +25,13 @@ greetMe.onclick = () => {
 
     selected = greeting.getCheckLang()
     language = greeting.getLanguage()
+    greeting.setName(name, usernames, selected)
 
-    greeting.setName(name, selected)
+
     if (greeting.getName()) {
         greeting.correctNameClassName(nameLabel, error, username)
         counter.innerHTML = greeting.getCount()
-        let names = greeting.getNames()
+        console.log(usernames)
         greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`
         localStorage.setItem('users', JSON.stringify(usernames))
         localStorage.setItem('count', JSON.stringify(greeting.getCount()))
