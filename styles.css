@@ -67,17 +67,30 @@ legend{
 .bottom-container {
     margin: 10px 0;
 }
-
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+}
 button{
-    padding: 10px;
+    cursor: pointer;
+    padding: 5px 7px;
     border-radius: 10px;
+    background-color: rgb(190, 225, 255);
     border: .2px solid rgb(62, 62, 62);
     transition: .2s ease-in;
 }
 
-button:hover{
-    background-color: rgb(255, 223, 228);
+.reset{
+    background-color: white;
 }
+button:hover{
+    background-color: white;
+}
+.reset:hover{
+    background-color: rgb(190, 225, 255);
+}
+
 .language {
     cursor: pointer;
 }

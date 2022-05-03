@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-    <html lang="en">
+<html lang="en">
 
-    <meta charset="UTF-8">
-    <title>Greetings</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="./styles.css">
-    <link rel="preconnect"
-        href="https://fonts.google.com/share?selection.family=Abel%7CBarlow%20Semi%20Condensed:wght@300%7CRoboto:wght@100%7CSmooch%20Sans:wght@200" />
+<meta charset="UTF-8">
+<title>Greetings</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="./styles.css">
+<link rel="preconnect"
+    href="https://fonts.google.com/share?selection.family=Abel%7CBarlow%20Semi%20Condensed:wght@300%7CRoboto:wght@100%7CSmooch%20Sans:wght@200" />
 
 <body>
     <div class="container">
@@ -16,8 +16,8 @@
         </div>
         <fieldset>
             <legend>Greetings</legend>
-        </h1>
-        <div class="greeting-container">
+            </h1>
+            <div class="greeting-container">
                 <div class="input-container">
                     <label class="name-label" for="name">Name:</label>
                     <input class='name' type="text" name='name' placeholder="enter your name" />
@@ -42,7 +42,10 @@
 
                     <label class="selection-error hide">error. select language!</label>
                 </div>
-                <button class="greet-me">Greet Me</button>
+                <div class="buttons">
+                    <button class="greet-me">Greet Me</button>
+                    <button class="greet-me reset">Reset Me</button>
+                </div>
             </div>
         </fieldset>
         <fieldset>
@@ -50,7 +53,7 @@
         </fieldset>
 
     </div>
-    <script src="./app.js" type="module" ></script>
+    <script src="./app.js" type="module"></script>
 </body>
 
 </html>

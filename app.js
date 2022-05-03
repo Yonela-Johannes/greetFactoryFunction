@@ -3,6 +3,7 @@ const greeting = Greet()
 let username = document.querySelector('.name')
 const counter = document.querySelector('.counter')
 const greetMe = document.querySelector('.greet-me')
+const reset = document.querySelector('.reset')
 const greet = document.querySelector('.greet')
 const error = document.querySelector('.error')
 let users = JSON.parse(localStorage.getItem("users"))
@@ -22,25 +23,26 @@ greetMe.onclick = () => {
     let selected = false
     let name = username.value
     greeting.selectLanguage(languageGreetSelect)
-
     selected = greeting.getCheckLang()
     language = greeting.getLanguage()
     greeting.setName(name, usernames, selected)
 
+    greeting.getName() ? (
+        greeting.correctNameClassName(nameLabel, error, username),
+        counter.innerHTML = usernames.length,
+        greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
+        localStorage.setItem('users', JSON.stringify(usernames)),
+        localStorage.setItem('count', JSON.stringify(usernames.length)),
+        localStorage.setItem("language", JSON.stringify(greeting.getLanguage())))
+        :
+        username.value == '' ? (
+            greeting.nameClassName(nameLabel, error, username)
+        ) : !selected && (
+            selectionError.classList.remove('hide')
+        )
+}
 
-    if (greeting.getName()) {
-        greeting.correctNameClassName(nameLabel, error, username)
-        counter.innerHTML = greeting.getCount()
-        console.log(usernames)
-        greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`
-        localStorage.setItem('users', JSON.stringify(usernames))
-        localStorage.setItem('count', JSON.stringify(greeting.getCount()))
-        localStorage.setItem("language", JSON.stringify(greeting.getLanguage()))
-    }
-    else if (username.value == '') {
-        greeting.nameClassName(nameLabel, error, username)
-    }
-    else if (!selected) {
-        selectionError.classList.remove('hide')
-    }
+reset.onclick = () => {
+    localStorage.clear()
+    location.reload()
 }

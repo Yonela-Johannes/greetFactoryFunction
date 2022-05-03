@@ -6,7 +6,6 @@ let language = false
 export function Greet() {
     let names = []
     let username = ''
-    let counter = 0;
     let lang = false
 
     const selectLanguage = (selection) => {
@@ -17,13 +16,12 @@ export function Greet() {
     const getCheckLang = () => lang
     const getLanguage = () => language
 
-    const setName = (name, usernames, selected) => typeof name.trim() == 'string' && selected ? (usernames.includes(name) ? (counter, usernames, name) : (username = name, usernames.push(names = name), counter++)) : ('')
+    const setName = (name, usernames, selected) => typeof name.trim() == 'string' && selected ? (usernames.includes(name) ? (usernames, name) : (username = name, usernames.push(names = name))) : ('')
 
     const nameClassName = (nameState, error, nameInput) => (nameState.classList.add(nameError), error.classList.remove(hide), error.innerHTML = 'please enter name!', nameInput.classList.add(nameError), nameInput.length <= 4 && (error.innerHTML = 'name must be more than 4 characters!'))
     const correctNameClassName = (nameState, error, nameInput) => (nameState.classList.remove(nameError), error.classList.add(hide), error.innerHTML = '', nameInput.classList.remove(nameError), nameInput.classList.add(correctNameInput))
     const getName = () => username
     const getNames = () => names
-    const getCount = () => counter
 
     return {
         setName,
@@ -31,7 +29,6 @@ export function Greet() {
         getNames,
         selectLanguage,
         getCheckLang,
-        getCount,
         getLanguage,
         nameClassName,
         correctNameClassName,
