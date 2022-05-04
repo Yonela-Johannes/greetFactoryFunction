@@ -12,10 +12,10 @@ const selectionError = document.querySelector('.selection-error')
 const nameLabel = document.querySelector('.name-label')
 const languageGreetSelect = document.getElementsByClassName('language')
 let count = JSON.parse(localStorage.getItem('count'))
+
 let language = JSON.parse(localStorage.getItem('language'))
 
 let usernames = !users ? [] : users
-
 counter.innerHTML = count ? count : 0
 greet.innerHTML = 'Your name and greeting in selected language will appear here.'
 

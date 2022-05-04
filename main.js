@@ -16,7 +16,7 @@ export function Greet() {
     const getCheckLang = () => lang
     const getLanguage = () => language
 
-    const setName = (name, usernames, selected) => typeof name.trim() == 'string' && selected ? (usernames.includes(name) ? (usernames, name) : (username = name, usernames.push(names = name))) : ('')
+    const setName = (name, usernames, selected) => name.trim().replace(/[^a-z, ^A-Z]/g, '')[0].toUpperCase() + name.trim().replace(/[^a-z, A-Z]/g, '').slice(1) && selected ? (usernames.includes(name) ? (usernames, name) : (username = name, usernames.push(names = name))) : ('')
 
     const nameClassName = (nameState, error, nameInput) => (nameState.classList.add(nameError), error.classList.remove(hide), error.innerHTML = 'please enter name!', nameInput.classList.add(nameError), nameInput.length <= 4 && (error.innerHTML = 'name must be more than 4 characters!'))
     const correctNameClassName = (nameState, error, nameInput) => (nameState.classList.remove(nameError), error.classList.add(hide), error.innerHTML = '', nameInput.classList.remove(nameError), nameInput.classList.add(correctNameInput))
