@@ -6,14 +6,14 @@ const greetMe = document.querySelector('.greet-me')
 const reset = document.querySelector('.reset')
 const greet = document.querySelector('.greet')
 const error = document.querySelector('.error')
+const dupError = document.querySelector('.dup-error')
 let users = JSON.parse(localStorage.getItem("users"))
 
 const selectionError = document.querySelector('.selection-error')
-const nameLabel = document.querySelector('.name-label')
 const languageGreetSelect = document.getElementsByClassName('language')
 let count = JSON.parse(localStorage.getItem('count'))
 
-let language = JSON.parse(localStorage.getItem('language'))
+let language = ''
 
 let usernames = !users ? [] : users
 counter.innerHTML = count ? count : 0
@@ -25,24 +25,40 @@ greetMe.onclick = () => {
     greeting.selectLanguage(languageGreetSelect)
     selected = greeting.getCheckLang()
     language = greeting.getLanguage()
-    greeting.setName(name, usernames, selected)
-
-    greeting.getName() ? (
-        greeting.correctNameClassName(nameLabel, error, username),
-        counter.innerHTML = usernames.length,
-        greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
-        localStorage.setItem('users', JSON.stringify(usernames)),
-        localStorage.setItem('count', JSON.stringify(usernames.length)),
-        localStorage.setItem("language", JSON.stringify(greeting.getLanguage())))
+    greeting.setName(name)
+    greeting.storeName(usernames, selected)
+    const nameExist = greeting.getNameExist()
+    greeting.getName() && selected ?
+        (
+            greeting.correctNameClassName(error, username),
+            greeting.duplicateNameCheck(dupError, nameExist),
+            setTimeout(() => {
+                dupError.classList.add("hide")
+                location.reload()
+            }, 1700),
+            counter.innerHTML = usernames.length,
+            // document.querySelector(".name-list").innerHTML = `<ol>${greeting.getNamesList()}</ol>`,
+            greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
+            localStorage.setItem('users', JSON.stringify(usernames)),
+            localStorage.setItem('count', JSON.stringify(usernames.length)))
         :
         username.value == '' ? (
-            greeting.nameClassName(nameLabel, error, username)
+            greeting.nameClassName(error, username),
+            setTimeout(() => {
+                username.value = ''
+                error.classList.add('hide')
+            }, 1000)
         ) : !selected && (
-            selectionError.classList.remove('hide')
+            selectionError.classList.remove('hide'),
+            setTimeout(() => {
+                selectionError.classList.add('hide')
+            }, 1500)
         )
+
 }
 
 reset.onclick = () => {
     localStorage.clear()
     location.reload()
 }
+

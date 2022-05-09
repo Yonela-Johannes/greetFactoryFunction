@@ -18,34 +18,38 @@
             <legend>Greetings</legend>
             </h1>
             <div class="greeting-container">
-                <div class="input-container">
-                    <label class="name-label" for="name">Name:</label>
-                    <input class='name' type="text" name='name' placeholder="enter your name" />
-                    <label class="counter">0</label>
+                <div class="main-container">
+                    <div class="input-container">
+                        <label class="name-label" for="name">Name:</label>
+                        <input class='name' type="text" name='name' placeholder="enter your name" />
+                        <label class="counter">0</label>
+                    </div>
+                    <label class="error hide">error. enter name please!</label><br />
+                    <label class="dup-error hide"></label><br />
+                    <div class="bottom-container">
+                        <input name='languages' type="radio" class='language' value="Hello" />
+                        <label for="english">English</label><br />
+
+                        <input name="languages" type="radio" class='language' value="Hallo" />
+                        <label for="afrikaans">Afrikaans</label><br />
+
+                        <input name="languages" type="radio" class='language' value="Molo" />
+                        <label for="xhosa">isiXhosa</label><br />
+
+                        <input name="languages" type="radio" class='language' value="Sawubona" />
+                        <label for="Zulu">isiZulu</label><br />
+
+                        <input name="languages" type="radio" class='language' value="Lumela" /></label>
+                        <label for="Sesotho">Sesotho</label></br>
+
+                        <label class="selection-error hide">select language!</label>
+                    </div>
+                    <div class="buttons">
+                        <button class="greet-me">Greet Me</button>
+                        <button class="greet-me reset">Reset Me</button>
+                    </div>
                 </div>
-                <label class="error hide">error. enter name please!</label><br />
-                <div class="bottom-container">
-                    <input name='languages' type="radio" class='language' value="Hello" />
-                    <label for="english">English</label><br />
-
-                    <input name="languages" type="radio" class='language' value="Hallo" />
-                    <label for="afrikaans">Afrikaans</label><br />
-
-                    <input name="languages" type="radio" class='language' value="Molo" />
-                    <label for="xhosa">isiXhosa</label><br />
-
-                    <input name="languages" type="radio" class='language' value="Sawubona" />
-                    <label for="Zulu">isiZulu</label><br />
-
-                    <input name="languages" type="radio" class='language' value="Lumela" /></label>
-                    <label for="Sesotho">Sesotho</label></br>
-
-                    <label class="selection-error hide">error. select language!</label>
-                </div>
-                <div class="buttons">
-                    <button class="greet-me">Greet Me</button>
-                    <button class="greet-me reset">Reset Me</button>
-                </div>
+                <div class="name-list"></div>
             </div>
         </fieldset>
         <fieldset>
