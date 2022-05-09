@@ -19,11 +19,15 @@ let usernames = !users ? [] : users
 counter.innerHTML = count ? count : 0
 greet.innerHTML = 'Your name and greeting in selected language will appear here.'
 const nameList = document.querySelector(".name-list")
-usernames.forEach(element => {
-    nameList.innerHTML += `
+const listNames = array => {
+    nameList.innerHTML = ""
+    array.forEach(element => {
+        nameList.innerHTML += `
         <ul class="display-item"><li>${element[0].toUpperCase() + element.slice(1).toLowerCase()}</li></ul>
     `
-});
+    });
+}
+listNames(usernames)
 greetMe.onclick = (e) => {
     e.preventDefault()
     let selected = false
@@ -40,12 +44,9 @@ greetMe.onclick = (e) => {
             greeting.duplicateNameCheck(dupError, nameExist),
             setTimeout(() => {
                 dupError.classList.add("hide")
-                username.value = ''
             }, 3000),
-
-            setTimeout(() => {
-                location.reload()
-            }, 4000),
+            listNames(usernames),
+            username.value = '',
             counter.innerHTML = usernames.length,
             greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
             localStorage.setItem('users', JSON.stringify(usernames)),
