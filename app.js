@@ -24,7 +24,8 @@ usernames.forEach(element => {
         <ul class="display-item"><li>${element[0].toUpperCase() + element.slice(1).toLowerCase()}</li></ul>
     `
 });
-greetMe.onclick = () => {
+greetMe.onclick = (e) => {
+    e.preventDefault()
     let selected = false
     let name = username.value
     greeting.selectLanguage(languageGreetSelect)
@@ -39,12 +40,18 @@ greetMe.onclick = () => {
             greeting.duplicateNameCheck(dupError, nameExist),
             setTimeout(() => {
                 dupError.classList.add("hide")
+                // location.reload()
+                username.value = ''
+            }, 3000),
+
+            setTimeout(() => {
                 location.reload()
-            }, 1700),
+            }, 3000),
             counter.innerHTML = usernames.length,
             greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
             localStorage.setItem('users', JSON.stringify(usernames)),
-            localStorage.setItem('count', JSON.stringify(usernames.length)))
+            localStorage.setItem('count', JSON.stringify(usernames.length))
+        )
         :
         username.value == '' ? (
             greeting.nameClassName(error, username),
