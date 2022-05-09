@@ -1,6 +1,7 @@
 import { Greet } from "./main.js";
 const greeting = Greet()
 let username = document.querySelector('.name')
+let language = ''
 const counter = document.querySelector('.counter')
 const greetMe = document.querySelector('.greet-me')
 const reset = document.querySelector('.reset')
@@ -12,8 +13,6 @@ let users = JSON.parse(localStorage.getItem("users"))
 const selectionError = document.querySelector('.selection-error')
 const languageGreetSelect = document.getElementsByClassName('language')
 let count = JSON.parse(localStorage.getItem('count'))
-
-let language = ''
 
 let usernames = !users ? [] : users
 counter.innerHTML = count ? count : 0
@@ -40,8 +39,8 @@ greetMe.onclick = (e) => {
     const nameExist = greeting.getNameExist()
     greeting.getName() && selected ?
         (
-            greeting.correctNameClassName(error, username),
-            greeting.duplicateNameCheck(dupError, nameExist),
+
+            nameExist && (dupError.classList.remove("hide"), dupError.innerHTML = `${greeting.getName()}, you have already been greeted.`),
             setTimeout(() => {
                 dupError.classList.add("hide")
             }, 3000),
@@ -54,17 +53,19 @@ greetMe.onclick = (e) => {
         )
         :
         username.value == '' ? (
-            greeting.nameClassName(error, username),
+            error.classList.remove("hide"), error.innerHTML = 'please enter name!',
             setTimeout(() => {
                 username.value = ''
                 error.classList.add('hide')
             }, 1000)
-        ) : !selected && (
-            selectionError.classList.remove('hide'),
-            setTimeout(() => {
-                selectionError.classList.add('hide')
-            }, 1500)
-        )
+        ) :
+            username.value.length <= 4 ? (error.innerHTML = 'name must be more than 4 characters!', error.classList.remove("hide")) :
+                !selected && (
+                    selectionError.classList.remove('hide'),
+                    setTimeout(() => {
+                        selectionError.classList.add('hide')
+                    }, 1500)
+                )
 
 }
 

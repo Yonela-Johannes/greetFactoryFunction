@@ -1,9 +1,6 @@
-let nameError = 'error-name'
-let correctNameInput = 'correct-name'
-let hide = 'hide'
-let language = false
-let nameExist = false
 export function Greet() {
+    let language = false
+    let nameExist = false
     let names = []
     let username = ''
     let lang = false
@@ -28,11 +25,6 @@ export function Greet() {
     const storeName = (usernames, selected) => username && !usernames.includes(username) && selected ? names = usernames.push(username) : (names = usernames, nameExist = true)
 
     const getNameExist = () => nameExist
-    const nameClassName = (error, nameInput) => (error.classList.remove(hide), error.innerHTML = 'please enter name!', nameInput.length <= 4 && (error.innerHTML = 'name must be more than 4 characters!'))
-
-    const duplicateNameCheck = (dupError, checkname) => checkname && (dupError.classList.remove(hide), dupError.innerHTML = `${getName()}, you have already been greeted.`)
-
-    const correctNameClassName = (error, nameInput) => (error.classList.add(hide), error.innerHTML = '', nameInput.classList.remove(nameError), nameInput.classList.add(correctNameInput))
     const getNames = () => names
 
     return {
@@ -44,9 +36,6 @@ export function Greet() {
         selectLanguage,
         getCheckLang,
         getLanguage,
-        nameClassName,
-        correctNameClassName,
-        duplicateNameCheck,
     }
 
 }
