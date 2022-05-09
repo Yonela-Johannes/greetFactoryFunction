@@ -35,12 +35,12 @@ export function Greet() {
     const correctNameClassName = (error, nameInput) => (error.classList.add(hide), error.innerHTML = '', nameInput.classList.remove(nameError), nameInput.classList.add(correctNameInput))
     const getNames = () => names
 
-    // const getNamesList = () => {
-    //     for (let i = 0; i < getNames().length; i++) {
-    //         names += `<li>${getNames[i]}</li>`
-    //     }
-    //     return names    
-    // }
+    const getNamesList = () => {
+        for (let i = 0; i < getNames().length; i++) {
+            names += `<li>${getNames[i]}</li>`
+        }
+        return names
+    }
     return {
         setName,
         getName,
@@ -52,7 +52,7 @@ export function Greet() {
         getLanguage,
         nameClassName,
         correctNameClassName,
-        // getNamesList,
+        getNamesList,
         duplicateNameCheck,
     }
 
