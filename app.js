@@ -40,13 +40,12 @@ greetMe.onclick = (e) => {
             greeting.duplicateNameCheck(dupError, nameExist),
             setTimeout(() => {
                 dupError.classList.add("hide")
-                // location.reload()
                 username.value = ''
             }, 3000),
 
             setTimeout(() => {
                 location.reload()
-            }, 3000),
+            }, 4000),
             counter.innerHTML = usernames.length,
             greet.innerHTML = `${greeting.getLanguage()} ${greeting.getName()}`,
             localStorage.setItem('users', JSON.stringify(usernames)),
